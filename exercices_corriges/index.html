@@ -1,0 +1,684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation des algorithmes de Kruskal et Prim">
+      
+      
+      
+      
+        <link rel="prev" href="../kruskal_prim/">
+      
+      
+        <link rel="next" href="../plus_courts_chemins/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.11">
+    
+    
+      
+        <title>Exercices Corrigés - Arbres Couvrants - Algo de Graphe - Kruskal & Prim</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.bd6182e7.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercices-corriges-arbres-couvrants" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-header__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algo de Graphe - Kruskal & Prim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exercices Corrigés - Arbres Couvrants
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-nav__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Algo de Graphe - Kruskal & Prim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kruskal_prim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-borne-superieure-sur-le-nombre-darbres-couvrants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Borne supérieure sur le nombre d'arbres couvrants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-poids-negatifs-et-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Poids négatifs et Maximum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-propriete-de-larete-de-poids-minimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Propriété de l'arête de poids minimum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-condition-de-connexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Condition de connexité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-6-unicite-de-la-liste-des-poids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 6 : Unicité de la liste des poids
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plus_courts_chemins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k_connexite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-Connexité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coloration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-borne-superieure-sur-le-nombre-darbres-couvrants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Borne supérieure sur le nombre d'arbres couvrants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-poids-negatifs-et-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Poids négatifs et Maximum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-propriete-de-larete-de-poids-minimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Propriété de l'arête de poids minimum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-condition-de-connexite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Condition de connexité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-6-unicite-de-la-liste-des-poids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 6 : Unicité de la liste des poids
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="exercices-corriges-arbres-couvrants">Exercices Corrigés - Arbres Couvrants<a class="headerlink" href="#exercices-corriges-arbres-couvrants" title="Permanent link">&para;</a></h1>
+<p>Voici les corrections détaillées pour les exercices demandés.</p>
+<h2 id="exercice-2-borne-superieure-sur-le-nombre-darbres-couvrants">Exercice 2 : Borne supérieure sur le nombre d'arbres couvrants<a class="headerlink" href="#exercice-2-borne-superieure-sur-le-nombre-darbres-couvrants" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Donnez une borne supérieure sur le nombre d'arbres couvrants qu'un graphe à n sommets peut avoir.</p>
+<p><strong>Réponse :</strong>
+La borne supérieure est donnée par la <strong>formule de Cayley</strong>.
+Pour un graphe complet K_n (où toutes les paires de sommets sont reliées), le nombre d'arbres couvrants est exactement :
+<strong>n puissance (n-2)</strong></p>
+<p>Puisque tout graphe à n sommets est un sous-graphe du graphe complet K_n, il ne peut pas avoir plus d'arbres couvrants que K_n.
+Donc, le nombre d'arbres couvrants est au maximum n^(n-2).</p>
+<hr />
+<h2 id="exercice-3-poids-negatifs-et-maximum">Exercice 3 : Poids négatifs et Maximum<a class="headerlink" href="#exercice-3-poids-negatifs-et-maximum" title="Permanent link">&para;</a></h2>
+<p><strong>1. Si les valuations des arêtes sont toutes négatives. Est-ce que le problème est plus difficile que le cas où les arêtes sont de poids positifs ?</strong></p>
+<p><strong>Réponse : Non.</strong>
+Les algorithmes de Kruskal et Prim fonctionnent par <strong>comparaison</strong> de poids (trouver le minimum, trier).
+*   Si on ajoute une constante C à toutes les arêtes pour les rendre positives, l'ordre des arêtes ne change pas (si w1 &lt; w2, alors w1 + C &lt; w2 + C).
+*   L'arbre qui minimise la somme des poids reste le même.
+*   La complexité reste donc identique.</p>
+<p><strong>2. Si l'on souhaite trouver l'arbre couvrant de poids maximum. Est-ce que le problème devient difficile ?</strong></p>
+<p><strong>Réponse : Non.</strong>
+Le problème est symétrique. Pour trouver un Arbre Couvrant de Poids <strong>Maximum</strong> :
+*   Soit on multiplie tous les poids par -1 et on cherche le Minimum.
+*   Soit on modifie Kruskal pour trier les arêtes par ordre <strong>décroissant</strong>.
+*   Soit on modifie Prim pour choisir l'arête de poids <strong>maximum</strong> à chaque étape.
+La complexité reste la même.</p>
+<hr />
+<h2 id="exercice-4-propriete-de-larete-de-poids-minimum">Exercice 4 : Propriété de l'arête de poids minimum<a class="headerlink" href="#exercice-4-propriete-de-larete-de-poids-minimum" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Soit G = (V, E, w) un graphe non-orienté valué. Montrez que l'arête e de poids minimum appartient toujours à un Arbre couvrant de poids minimum.</p>
+<p><strong>Preuve (par l'absurde ou par la propriété de coupe) :</strong>
+Soit e = (u, v) l'arête de poids minimum unique du graphe.
+Supposons qu'il existe un Arbre Couvrant Minimum T qui ne contient pas e.
+1.  Si on ajoute e à T, cela crée nécessairement un cycle (car T est un arbre couvrant, il connecte déjà u et v par un chemin).
+2.  Ce cycle contient l'arête e et au moins une autre arête e' qui traverse la même coupe que e (c'est-à-dire une autre arête sur le chemin entre u et v dans T).
+3.  Comme e est l'arête de poids minimum de tout le graphe, son poids w(e) est strictement inférieur à w(e').
+4.  Si on retire e' et qu'on garde e, on obtient un nouvel arbre T' qui est toujours couvrant.
+5.  Le poids total de T' est Poids(T') = Poids(T) - w(e') + w(e).
+6.  Puisque w(e) &lt; w(e'), alors Poids(T') &lt; Poids(T).
+7.  Ceci contredit le fait que T était un Arbre Couvrant <em>Minimum</em>.</p>
+<p><strong>Conclusion :</strong> L'arête de poids minimum doit faire partie de l'ACM (si elle est unique). Si plusieurs arêtes ont le même poids minimum, au moins l'une d'entre elles appartient à un ACM.</p>
+<hr />
+<h2 id="exercice-5-condition-de-connexite">Exercice 5 : Condition de connexité<a class="headerlink" href="#exercice-5-condition-de-connexite" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Montrez que G = (V, E) est un graphe connexe si et seulement si la frontière de tout sous-ensemble de sommets n'est pas vide.</p>
+<p><strong>Explication :</strong> La frontière d'un ensemble X (notée parfois d(X)) est l'ensemble des arêtes qui relient un sommet dans X à un sommet hors de X.</p>
+<p><strong>Preuve :</strong>
+*   <strong>Sens direct (=&gt;) :</strong> Si G est connexe.
+    Prenez n'importe quel groupe de sommets X (qui n'est ni vide, ni tout le graphe). Puisque le graphe est connexe, il est possible d'aller de n'importe quel sommet de X vers n'importe quel sommet hors de X. Il doit donc forcément y avoir une "route" (une arête) qui sort de X. Donc la frontière de X n'est pas vide.</p>
+<ul>
+<li><strong>Sens réciproque (&lt;=) :</strong> Si la frontière n'est jamais vide.
+    Supposons par l'absurde que G n'est pas connexe.
+    Alors G est coupé en plusieurs morceaux isolés (composantes connexes). Prenons un de ces morceaux, appelons-le C1.
+    Si on regarde l'ensemble X = C1, comme c'est un morceau isolé, aucune arête ne le relie au reste du graphe.
+    Donc la frontière de C1 est vide.
+    Ceci contredit l'hypothèse de départ ("la frontière n'est jamais vide"). Donc G est forcément connexe.</li>
+</ul>
+<hr />
+<h2 id="exercice-6-unicite-de-la-liste-des-poids">Exercice 6 : Unicité de la liste des poids<a class="headerlink" href="#exercice-6-unicite-de-la-liste-des-poids" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Soit L la liste triée des poids des arêtes d'un ACM T. Soit T' un autre ACM. Est-ce que la liste triée L' des poids de T' est égale à L ?</p>
+<p><strong>Réponse : VRAI.</strong></p>
+<p><strong>Théorème :</strong> Pour un graphe donné, tous les arbres couvrants minimums ont exactement la même suite de poids d'arêtes.</p>
+<p><strong>Intuition :</strong>
+Même si la <em>structure</em> de l'arbre (quelles arêtes sont choisies) peut changer si plusieurs arêtes ont le même poids, la <em>quantité</em> d'arêtes de chaque poids nécessaire pour connecter le graphe est fixe.
+Par exemple, si on a besoin de 2 arêtes de poids 1 et 1 arête de poids 2 pour connecter tout le monde au moindre coût, tous les ACM auront cette composition, même s'ils ne choisissent pas les mêmes arêtes de poids 1.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.5df7522c.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.21aa498e.min.js"></script>
+      
+    
+  </body>
+</html>

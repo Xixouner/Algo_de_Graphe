@@ -1,0 +1,1104 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation des algorithmes de Kruskal et Prim">
+      
+      
+      
+      
+      
+        <link rel="next" href="../exercices_corriges/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.11">
+    
+    
+      
+        <title>Algorithmes de Kruskal et Prim - Algo de Graphe - Kruskal & Prim</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.bd6182e7.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#algorithmes-de-kruskal-et-prim" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-header__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algo de Graphe - Kruskal & Prim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithmes de Kruskal et Prim
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-nav__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Algo de Graphe - Kruskal & Prim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-arbre-couvrant-minimum-acm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction : Arbre Couvrant Minimum (ACM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-algorithme-de-kruskal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Algorithme de Kruskal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Algorithme de Kruskal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        But
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-detaillees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étapes détaillées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-efficacite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexité (Efficacité)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-dexecution-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace d'exécution (Exemple)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-algorithme-de-prim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Algorithme de Prim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Algorithme de Prim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        But
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-detaillees_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étapes détaillées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-efficacite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexité (Efficacité)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-dexecution-meme-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace d'exécution (Même exemple)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-comparatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Résumé Comparatif
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercices_corriges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plus_courts_chemins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k_connexite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-Connexité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coloration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-arbre-couvrant-minimum-acm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction : Arbre Couvrant Minimum (ACM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-algorithme-de-kruskal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Algorithme de Kruskal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Algorithme de Kruskal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        But
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-detaillees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étapes détaillées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-efficacite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexité (Efficacité)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-dexecution-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace d'exécution (Exemple)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-algorithme-de-prim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Algorithme de Prim
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Algorithme de Prim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#but_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        But
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-detaillees_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étapes détaillées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexite-efficacite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexité (Efficacité)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trace-dexecution-meme-exemple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trace d'exécution (Même exemple)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-comparatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Résumé Comparatif
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="algorithmes-de-kruskal-et-prim">Algorithmes de Kruskal et Prim<a class="headerlink" href="#algorithmes-de-kruskal-et-prim" title="Permanent link">&para;</a></h1>
+<p>Ce document détaille deux algorithmes fondamentaux pour trouver un <strong>Arbre Couvrant Minimum</strong> (ACM) dans un graphe.</p>
+<h2 id="introduction-arbre-couvrant-minimum-acm">Introduction : Arbre Couvrant Minimum (ACM)<a class="headerlink" href="#introduction-arbre-couvrant-minimum-acm" title="Permanent link">&para;</a></h2>
+<p>Imaginez un réseau de villes reliées par des routes, où chaque route a un coût de construction. Un <strong>Arbre Couvrant Minimum</strong> est un moyen de relier toutes les villes entre elles en utilisant le moins de routes possible et pour le coût total le plus bas. Il ne doit pas y avoir de boucles (cycles) : il y a juste assez de routes pour que tout le monde soit connecté.</p>
+<hr />
+<h2 id="1-algorithme-de-kruskal">1. Algorithme de Kruskal<a class="headerlink" href="#1-algorithme-de-kruskal" title="Permanent link">&para;</a></h2>
+<h3 id="but">But<a class="headerlink" href="#but" title="Permanent link">&para;</a></h3>
+<p>Construire le réseau en choisissant toujours la route la moins chère disponible, tant qu'elle ne crée pas de boucle inutile.</p>
+<h3 id="principe">Principe<a class="headerlink" href="#principe" title="Permanent link">&para;</a></h3>
+<p>L'algorithme de Kruskal est une approche <strong>gloutonne</strong> (on prend le meilleur choix immédiat) qui se concentre sur les <strong>arêtes</strong> (les routes).
+1. On classe toutes les routes de la moins chère à la plus chère.
+2. On regarde chaque route une par une. Si elle permet de relier deux zones qui n'étaient pas encore connectées ensemble, on la garde. Sinon (si les deux zones sont déjà reliées par un autre chemin), on la jette car elle créerait une boucle.</p>
+<h3 id="etapes-detaillees">Étapes détaillées<a class="headerlink" href="#etapes-detaillees" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Initialisation</strong> : Au début, chaque ville est isolée, comme si elle était sa propre petite île.</li>
+<li><strong>Tri</strong> : On fait une liste de toutes les routes possibles, triées par coût croissant (de la moins chère à la plus chère).</li>
+<li><strong>Boucle</strong> : On prend la première route de la liste (la moins chère) :<ul>
+<li>Est-ce que cette route relie deux groupes de villes différents ?</li>
+<li><strong>OUI</strong> : On construit la route. Les deux groupes de villes fusionnent pour n'en former qu'un seul plus grand.</li>
+<li><strong>NON</strong> : Les deux villes sont déjà connectées (directement ou via d'autres villes). On ignore cette route pour éviter de faire un circuit fermé.</li>
+</ul>
+</li>
+<li><strong>Fin</strong> : On s'arrête quand toutes les villes sont connectées ensemble.</li>
+</ol>
+<h3 id="complexite-efficacite">Complexité (Efficacité)<a class="headerlink" href="#complexite-efficacite" title="Permanent link">&para;</a></h3>
+<p>L'étape la plus longue est de trier toutes les routes par prix. Ensuite, vérifier si deux villes sont déjà connectées est très rapide grâce à des structures de données optimisées. C'est un algorithme efficace même pour des graphes assez grands.</p>
+<h3 id="trace-dexecution-exemple">Trace d'exécution (Exemple)<a class="headerlink" href="#trace-dexecution-exemple" title="Permanent link">&para;</a></h3>
+<video controls width="100%" autoplay loop muted>
+  <source src="../img/kruskal.webm" type="video/webm">
+  <source src="../img/kruskal.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**Étape 0 : Initialisation**
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Toutes les arêtes sont grises. Aucun sommet n&#39;est connecté.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>```mermaid
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>graph LR
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    B ---|2| D((D))
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    A ---|3| C((C))
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    C ---|4| D((D))
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    B ---|5| C((C))
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    style A fill:#fff,stroke:#333,stroke-width:2px
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    style B fill:#fff,stroke:#333,stroke-width:2px
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    style C fill:#fff,stroke:#333,stroke-width:2px
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    style D fill:#fff,stroke:#333,stroke-width:2px
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>```
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>**Étape 1 : Arête (A, B) - Poids 1**
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>On choisit l&#39;arête la moins chère. Elle ne crée pas de cycle.
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>```mermaid
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>graph LR
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    B ---|2| D((D))
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    A ---|3| C((C))
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    C ---|4| D((D))
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    B ---|5| C((C))
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    style A fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    style B fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    linkStyle 0 stroke:green,stroke-width:4px
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>```
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>**Étape 2 : Arête (B, D) - Poids 2**
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>La suivante est (B, D). Elle connecte D au groupe {A, B}.
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>```mermaid
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>graph LR
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    B ---|2| D((D))
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    A ---|3| C((C))
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    C ---|4| D((D))
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    B ---|5| C((C))
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    style A fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    style B fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    style D fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    linkStyle 0 stroke:green,stroke-width:4px
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    linkStyle 1 stroke:green,stroke-width:4px
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>```
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>**Étape 3 : Arête (A, C) - Poids 3**
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>La suivante est (A, C). Elle connecte C au reste.
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>```mermaid
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>graph LR
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    B ---|2| D((D))
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    A ---|3| C((C))
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    C ---|4| D((D))
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    B ---|5| C((C))
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    style A fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    style B fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    style C fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    style D fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    linkStyle 0 stroke:green,stroke-width:4px
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    linkStyle 1 stroke:green,stroke-width:4px
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    linkStyle 2 stroke:green,stroke-width:4px
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>```
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>**Étape 4 : Fin**
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>Les arêtes restantes (C, D) et (B, C) créeraient des cycles (tous les sommets sont déjà connectés). L&#39;algorithme s&#39;arrête.
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>```mermaid
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>graph LR
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    B ---|2| D((D))
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    A ---|3| C((C))
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    C ---|4| D((D))
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    B ---|5| C((C))
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    style A fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    style B fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    style C fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    style D fill:#cfc,stroke:#333,stroke-width:2px
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    linkStyle 0 stroke:green,stroke-width:4px
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    linkStyle 1 stroke:green,stroke-width:4px
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    linkStyle 2 stroke:green,stroke-width:4px
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    linkStyle 3 stroke:red,stroke-width:1px,stroke-dasharray: 5 5
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    linkStyle 4 stroke:red,stroke-width:1px,stroke-dasharray: 5 5
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>```
+</span></code></pre></div>
+<p>Soit le graphe suivant :
+*   Sommets : A, B, C, D
+*   Arêtes :
+    *   (A, B) : 1
+    *   (B, D) : 2
+    *   (A, C) : 3
+    *   (C, D) : 4
+    *   (B, C) : 5</p>
+<p>(Les routes C-D et B-C sont ignorées car elles relieraient des villes déjà connectées au réseau).</p>
+<hr />
+<h2 id="2-algorithme-de-prim">2. Algorithme de Prim<a class="headerlink" href="#2-algorithme-de-prim" title="Permanent link">&para;</a></h2>
+<h3 id="but_1">But<a class="headerlink" href="#but_1" title="Permanent link">&para;</a></h3>
+<p>Construire le réseau en partant d'une ville et en s'étendant petit à petit vers les villes voisines les plus proches.</p>
+<h3 id="principe_1">Principe<a class="headerlink" href="#principe_1" title="Permanent link">&para;</a></h3>
+<p>L'algorithme de Prim est aussi une approche <strong>gloutonne</strong>, mais qui se concentre sur les <strong>sommets</strong> (les villes).
+1. On choisit une ville de départ au hasard.
+2. À chaque étape, on regarde toutes les routes qui partent des villes déjà connectées vers l'extérieur. On choisit la moins chère pour ajouter une nouvelle ville au réseau.</p>
+<h3 id="etapes-detaillees_1">Étapes détaillées<a class="headerlink" href="#etapes-detaillees_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Initialisation</strong> : On choisit une ville de départ (n'importe laquelle). C'est notre "réseau actuel".</li>
+<li><strong>Boucle</strong> : Tant qu'il reste des villes non connectées :<ul>
+<li>On regarde toutes les routes possibles qui partent d'une ville <strong>dans</strong> notre réseau vers une ville <strong>hors</strong> de notre réseau.</li>
+<li>On choisit la route la moins chère parmi celles-ci.</li>
+<li>On ajoute cette route et la nouvelle ville à notre réseau.</li>
+</ul>
+</li>
+<li><strong>Fin</strong> : Quand toutes les villes sont dans le réseau.</li>
+</ol>
+<h3 id="complexite-efficacite_1">Complexité (Efficacité)<a class="headerlink" href="#complexite-efficacite_1" title="Permanent link">&para;</a></h3>
+<p>L'efficacité dépend de la façon dont on trouve rapidement la prochaine route la moins chère. C'est généralement très efficace, surtout si le réseau a beaucoup de routes (graphe dense).</p>
+<h3 id="trace-dexecution-meme-exemple">Trace d'exécution (Même exemple)<a class="headerlink" href="#trace-dexecution-meme-exemple" title="Permanent link">&para;</a></h3>
+<video controls width="100%" autoplay loop muted>
+  <source src="../img/prim.webm" type="video/webm">
+  <source src="../img/prim.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;!-- slide --&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**Étape 0 : Initialisation**
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>On part de A.
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>```mermaid
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>graph LR
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    B ---|2| D((D))
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    A ---|3| C((C))
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    C ---|4| D((D))
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    B ---|5| C((C))
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    style A fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>```
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>&lt;!-- slide --&gt;
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>**Étape 1 : Choix (A, B)**
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>Voisins de A : B(1), C(3). Le min est B.
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>```mermaid
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>graph LR
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    B ---|2| D((D))
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    A ---|3| C((C))
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    C ---|4| D((D))
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    B ---|5| C((C))
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    style A fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    style B fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    linkStyle 0 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>```
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>&lt;!-- slide --&gt;
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>**Étape 2 : Choix (B, D)**
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>Voisins accessibles : C(3) [via A], D(2) [via B], C(5) [via B]. Le min est D(2).
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>```mermaid
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>graph LR
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    B ---|2| D((D))
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    A ---|3| C((C))
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    C ---|4| D((D))
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    B ---|5| C((C))
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    style A fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    style B fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    style D fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    linkStyle 0 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    linkStyle 1 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>```
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>&lt;!-- slide --&gt;
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>**Étape 3 : Choix (A, C)**
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>Voisins accessibles : C(3) [via A], C(5) [via B], C(4) [via D]. Le min est C(3).
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>```mermaid
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>graph LR
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    A((A)) ---|1| B((B))
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    B ---|2| D((D))
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    A ---|3| C((C))
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    C ---|4| D((D))
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    B ---|5| C((C))
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    style A fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    style B fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    style D fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    style C fill:#f9f,stroke:#333,stroke-width:4px
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    linkStyle 0 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    linkStyle 1 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    linkStyle 2 stroke:magenta,stroke-width:4px
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>```
+</span></code></pre></div>
+<p>Graphe :
+*   Sommets : A, B, C, D
+*   Arêtes : (A,B):1, (B,D):2, (A,C):3, (C,D):4, (B,C):5</p>
+<hr />
+<h2 id="resume-comparatif">Résumé Comparatif<a class="headerlink" href="#resume-comparatif" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Caractéristique</th>
+<th style="text-align: left;">Kruskal</th>
+<th style="text-align: left;">Prim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Idée principale</strong></td>
+<td style="text-align: left;">On trie toutes les routes et on prend les moins chères (si pas de boucle).</td>
+<td style="text-align: left;">On part d'une ville et on grandit comme une tache d'huile vers la plus proche.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Approche</strong></td>
+<td style="text-align: left;">Globale (on regarde toutes les routes d'un coup).</td>
+<td style="text-align: left;">Locale (on regarde juste autour de ce qu'on a déjà).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Meilleur usage</strong></td>
+<td style="text-align: left;">Quand il y a peu de routes (graphe "aéré").</td>
+<td style="text-align: left;">Quand il y a beaucoup de routes (graphe "dense").</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.5df7522c.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.21aa498e.min.js"></script>
+      
+    
+  </body>
+</html>

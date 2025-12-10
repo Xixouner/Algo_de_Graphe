@@ -1,0 +1,691 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation des algorithmes de Kruskal et Prim">
+      
+      
+      
+      
+        <link rel="prev" href="../exercices_corriges/">
+      
+      
+        <link rel="next" href="../k_connexite/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.11">
+    
+    
+      
+        <title>Exercices Corrigés - Plus Courts Chemins - Algo de Graphe - Kruskal & Prim</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.bd6182e7.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercices-corriges-plus-courts-chemins" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-header__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algo de Graphe - Kruskal & Prim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exercices Corrigés - Plus Courts Chemins
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-nav__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Algo de Graphe - Kruskal & Prim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kruskal_prim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercices_corriges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-dijkstra-et-cycles-negatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Dijkstra et Cycles Négatifs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-produit-des-poids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Produit des poids
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-chemin-le-plus-fiable-probabilites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Chemin le plus fiable (Probabilités)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-plus-long-chemin-et-cycles-negatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Plus long chemin et cycles négatifs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-complexite-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Complexité de Dijkstra
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k_connexite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-Connexité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coloration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-dijkstra-et-cycles-negatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Dijkstra et Cycles Négatifs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-produit-des-poids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Produit des poids
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-chemin-le-plus-fiable-probabilites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Chemin le plus fiable (Probabilités)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-plus-long-chemin-et-cycles-negatifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Plus long chemin et cycles négatifs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-complexite-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Complexité de Dijkstra
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="exercices-corriges-plus-courts-chemins">Exercices Corrigés - Plus Courts Chemins<a class="headerlink" href="#exercices-corriges-plus-courts-chemins" title="Permanent link">&para;</a></h1>
+<p>Voici les corrections pour la série d'exercices sur les plus courts chemins.</p>
+<h2 id="exercice-1-dijkstra-et-cycles-negatifs">Exercice 1 : Dijkstra et Cycles Négatifs<a class="headerlink" href="#exercice-1-dijkstra-et-cycles-negatifs" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Dans un graphe pondéré, en présence de cycles négatifs, exhibez un exemple où l'algorithme de Dijkstra ne trouve pas le plus court chemin.</p>
+<p><strong>Réponse :</strong>
+L'algorithme de Dijkstra suppose que lorsqu'on "valide" un sommet (qu'on le sort de la file d'attente), on a définitivement trouvé son plus court chemin. Cette hypothèse est fausse si des arêtes ont des poids négatifs, et encore plus s'il y a des cycles négatifs.</p>
+<p><strong>Exemple d'exécution (Graphe sans poids négatifs) :</strong></p>
+<video controls width="100%" autoplay loop muted>
+  <source src="../img/dijkstra.webm" type="video/webm">
+  <source src="../img/dijkstra.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p><strong>Exemple simple (Arête négative) :</strong>
+*   Sommets : A, B, C
+*   Arêtes :
+    *   A -&gt; B (coût 2)
+    *   A -&gt; C (coût 5)
+    *   B -&gt; C (coût -10)</p>
+<p><strong>Déroulement de Dijkstra (partant de A) :</strong>
+1.  On visite A. Voisins : B (2), C (5).
+2.  Le plus proche est B (2). On valide B.
+3.  On regarde les voisins de B : C est accessible avec un coût total de 2 + (-10) = -8.
+    *   <em>Problème</em> : Si Dijkstra a déjà validé C (dans un graphe plus complexe) ou s'il ne met pas à jour correctement les priorités, il échoue.
+    *   Mais le vrai problème des <strong>cycles négatifs</strong> est que le chemin peut devenir infiniment petit (ex: A -&gt; B -&gt; A avec coût total -1). Dijkstra ne détecte pas cela et peut tourner en boucle ou donner un résultat faux.</p>
+<hr />
+<h2 id="exercice-2-produit-des-poids">Exercice 2 : Produit des poids<a class="headerlink" href="#exercice-2-produit-des-poids" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> On veut trouver le chemin qui minimise le <strong>produit</strong> des poids (tous &gt;= 1). Comment faire ?</p>
+<p><strong>Réponse :</strong>
+On utilise les <strong>logarithmes</strong>.
+On sait que : log(a * b) = log(a) + log(b).
+Minimiser un produit revient à minimiser la somme des logarithmes.</p>
+<p><strong>Algorithme :</strong>
+1.  Transformer le graphe : remplacer chaque poids w par son logarithme : w' = log(w).
+2.  Comme w &gt;= 1, alors log(w) &gt;= 0. Tous les nouveaux poids sont positifs.
+3.  Appliquer l'algorithme de <strong>Dijkstra</strong> classique sur ce nouveau graphe.
+4.  Le chemin trouvé sera celui qui minimise la somme des log, et donc le produit des poids initiaux.</p>
+<hr />
+<h2 id="exercice-3-chemin-le-plus-fiable-probabilites">Exercice 3 : Chemin le plus fiable (Probabilités)<a class="headerlink" href="#exercice-3-chemin-le-plus-fiable-probabilites" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Les poids sont des probabilités (entre 0 et 1). On veut maximiser la probabilité d'arrivée (produit des probabilités sur le chemin).</p>
+<p><strong>Réponse :</strong>
+C'est similaire à l'exercice précédent, mais on veut <strong>maximiser</strong> un produit de nombres entre 0 et 1.
+On sait que log(p) est négatif (car p &lt;= 1).
+Pour se ramener à un problème de plus court chemin (minimisation de somme positive), on utilise : <strong>-log(p)</strong>.</p>
+<p><strong>Algorithme :</strong>
+1.  Transformer le graphe : remplacer chaque probabilité p par w' = -log(p).
+2.  Comme p &lt;= 1, log(p) &lt;= 0, donc -log(p) &gt;= 0. Les nouveaux poids sont positifs.
+3.  Chercher le chemin qui <strong>minimise</strong> la somme des w' (ce qui revient à maximiser le produit des p).
+4.  Utiliser <strong>Dijkstra</strong>.</p>
+<hr />
+<h2 id="exercice-4-plus-long-chemin-et-cycles-negatifs">Exercice 4 : Plus long chemin et cycles négatifs<a class="headerlink" href="#exercice-4-plus-long-chemin-et-cycles-negatifs" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Montrez que si nous savons résoudre le problème du plus court chemin en présence de cycle de longueur négative, alors nous savons résoudre le problème du plus long chemin.</p>
+<p><strong>Réponse :</strong>
+Le problème du "Plus Long Chemin" dans un graphe G est équivalent au problème du "Plus Court Chemin" dans un graphe G' où tous les poids sont inversés (multipliés par -1).</p>
+<p><strong>Réduction :</strong>
+1.  Construire G' identique à G, mais pour chaque arête de poids w, on lui donne le poids -w.
+2.  Chercher le plus court chemin dans G'.
+    *   Si on trouve un chemin de longueur L dans G', cela correspond à un chemin de longueur -L dans G.
+    *   Minimiser (-L) revient à Maximiser L.
+3.  <strong>Attention</strong> : Si G a des cycles positifs, G' aura des cycles négatifs.
+    *   C'est pourquoi on a besoin d'un algorithme capable de gérer les cycles négatifs (comme supposé dans l'énoncé).</p>
+<hr />
+<h2 id="exercice-5-complexite-de-dijkstra">Exercice 5 : Complexité de Dijkstra<a class="headerlink" href="#exercice-5-complexite-de-dijkstra" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Est-ce que l'algorithme de Dijkstra (avec tas de Fibonacci) peut s'exécuter en temps inférieur à o(m + n log n) ?</p>
+<p><strong>Réponse : Non (dans le cas général).</strong>
+La complexité O(m + n log n) est considérée comme optimale pour les algorithmes basés sur la comparaison dans des graphes généraux.
+*   Le terme "n log n" vient de la nécessité de trier les sommets par distance (similaire au tri d'une liste).
+*   On sait que trier n éléments par comparaison prend au minimum O(n log n).
+*   Si on pouvait faire Dijkstra beaucoup plus vite, on pourrait l'utiliser pour trier des nombres plus vite que la limite théorique, ce qui est impossible (avec des comparaisons uniquement).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.5df7522c.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.21aa498e.min.js"></script>
+      
+    
+  </body>
+</html>

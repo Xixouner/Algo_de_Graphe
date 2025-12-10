@@ -1,0 +1,679 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation des algorithmes de Kruskal et Prim">
+      
+      
+      
+      
+        <link rel="prev" href="../coloration/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.11">
+    
+    
+      
+        <title>Exercices Corrigés - Flots - Algo de Graphe - Kruskal & Prim</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.bd6182e7.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercices-corriges-flots" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-header__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algo de Graphe - Kruskal & Prim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exercices Corrigés - Flots
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-nav__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Algo de Graphe - Kruskal & Prim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kruskal_prim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercices_corriges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plus_courts_chemins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k_connexite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-Connexité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coloration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-algorithme-de-ford-fulkerson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Algorithme de Ford-Fulkerson
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-realisation-dune-sequence-de-degres-graphe-biparti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Réalisation d'une séquence de degrés (Graphe Biparti)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-algorithme-de-ford-fulkerson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Algorithme de Ford-Fulkerson
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-realisation-dune-sequence-de-degres-graphe-biparti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Réalisation d'une séquence de degrés (Graphe Biparti)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="exercices-corriges-flots">Exercices Corrigés - Flots<a class="headerlink" href="#exercices-corriges-flots" title="Permanent link">&para;</a></h1>
+<p>Voici les corrections pour la série d'exercices sur les flots.</p>
+<h2 id="exercice-1-algorithme-de-ford-fulkerson">Exercice 1 : Algorithme de Ford-Fulkerson<a class="headerlink" href="#exercice-1-algorithme-de-ford-fulkerson" title="Permanent link">&para;</a></h2>
+<p><em>(Note : Le graphe n'étant pas visible, voici la méthode générale pour résoudre cet exercice)</em></p>
+<p><strong>1. Exécution de l'algorithme</strong></p>
+<video controls width="100%" autoplay loop muted>
+  <source src="../img/ford_fulkerson.webm" type="video/webm">
+  <source src="../img/ford_fulkerson.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**État Initial**
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Capacités affichées sur les arcs. Flot = 0.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>```mermaid
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>graph LR
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    S((S)) --&gt;|10| A((A))
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    S --&gt;|10| B((B))
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    A --&gt;|5| B((B))
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    A --&gt;|5| T((T))
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    B --&gt;|10| T((T))
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>```
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Itération 1 : Chemin S -&gt; A -&gt; T**
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>On envoie 5 unités (limité par A-&gt;T).
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Flot Total = 5.
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>```mermaid
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>graph LR
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    S((S)) --&gt;|5/10| A((A))
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    S --&gt;|0/10| B((B))
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    A --&gt;|0/5| B((B))
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    A --&gt;|5/5| T((T))
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    B --&gt;|0/10| T((T))
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    linkStyle 0 stroke:blue,stroke-width:3px
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    linkStyle 3 stroke:blue,stroke-width:3px
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>```
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>**Itération 2 : Chemin S -&gt; B -&gt; T**
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>On envoie 10 unités (limité par S-&gt;B et B-&gt;T).
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>Flot Total = 5 + 10 = 15.
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>```mermaid
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>graph LR
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    S((S)) --&gt;|5/10| A((A))
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    S --&gt;|10/10| B((B))
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    A --&gt;|0/5| B((B))
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    A --&gt;|5/5| T((T))
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    B --&gt;|10/10| T((T))
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    linkStyle 1 stroke:blue,stroke-width:3px
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    linkStyle 4 stroke:blue,stroke-width:3px
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>```
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>&lt;!-- slide --&gt;
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>**Itération 3 : Chemin S -&gt; A -&gt; B -&gt; T ?**
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>Impossible car B-&gt;T est saturé (10/10) et A-&gt;T est saturé (5/5).
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>Cependant, si on avait A-&gt;B avec capacité restante, on pourrait passer.
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>Ici, le flot est bloqué. Max Flow = 15.
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>```mermaid
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>graph LR
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    S((S)) --&gt;|5/10| A((A))
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    S --&gt;|10/10| B((B))
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    A --&gt;|0/5| B((B))
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    A --&gt;|5/5| T((T))
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    B --&gt;|10/10| T((T))
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    style S fill:#cfc
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    style A fill:#cfc
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    style B fill:#fcc
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    style T fill:#fcc
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>```
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>*(En vert : sommets accessibles depuis S dans le résiduel. En rouge : inaccessibles. La coupe min est {A-&gt;T, S-&gt;B, A-&gt;B} ... attendez, S-&gt;B est saturé, A-&gt;T est saturé. Coupe = {S-&gt;B, A-&gt;T, A-&gt;B} ? Non, A-&gt;B a cap 5 et flot 0. Coupe Min = {S-&gt;B, A-&gt;T} de capacité 10+5=15).*
+</span></code></pre></div>
+<p>L'algorithme de Ford-Fulkerson fonctionne par itérations successives :
+1.  <strong>Initialisation :</strong> Le flot est nul partout.
+2.  <strong>Recherche de chemin augmentant :</strong> On cherche un chemin de la source (s) vers le puits (t) dans le graphe résiduel.
+    *   Le graphe résiduel contient les arcs où il reste de la capacité (capacité - flot actuel &gt; 0) et les arcs inverses là où il y a déjà du flot (pour pouvoir l'annuler).
+3.  <strong>Augmentation :</strong> Si on trouve un chemin, on calcule la capacité résiduelle minimale sur ce chemin (le "goulot d'étranglement"). On augmente le flot de cette valeur le long du chemin.
+4.  <strong>Répétition :</strong> On recommence tant qu'on trouve un chemin augmentant.
+5.  <strong>Arrêt :</strong> Quand il n'y a plus de chemin de s à t, on a trouvé le flot maximum.</p>
+<p><strong>2. Valeur du flot maximum</strong>
+C'est la somme des flots sortant de la source (ou entrant dans le puits) à la fin de l'algorithme.</p>
+<p><strong>3. Coupe minimum</strong>
+La coupe minimum correspond à l'ensemble des arcs qui saturent et bloquent le passage.
+Pour la trouver :
+1.  À la fin de l'algorithme, marquez tous les sommets accessibles depuis la source dans le graphe résiduel. Appelons cet ensemble S.
+2.  Les autres sommets forment l'ensemble T.
+3.  La coupe minimum est constituée de tous les arcs qui vont d'un sommet de S vers un sommet de T dans le graphe original.
+4.  La somme des capacités de ces arcs est égale à la valeur du flot maximum (Théorème Max-Flow Min-Cut).</p>
+<hr />
+<h2 id="exercice-2-realisation-dune-sequence-de-degres-graphe-biparti">Exercice 2 : Réalisation d'une séquence de degrés (Graphe Biparti)<a class="headerlink" href="#exercice-2-realisation-dune-sequence-de-degres-graphe-biparti" title="Permanent link">&para;</a></h2>
+<p><strong>Données :</strong> Deux séquences d'entiers r = (r1, ..., rn) et b = (b1, ..., bm) telles que la somme des r_i est égale à la somme des b_j.
+<strong>Problème :</strong> Existe-t-il un graphe biparti avec ces degrés ?</p>
+<p><strong>1. Modélisation en Flot Maximum</strong>
+On construit un réseau de transport :
+*   Une <strong>Source S</strong> et un <strong>Puits T</strong>.
+*   Des nœuds pour chaque élément de R (gauche) et chaque élément de B (droite).
+*   <strong>Arcs S -&gt; R_i</strong> : Capacité = r_i (On veut que le sommet R_i ait exactement r_i arêtes, donc on lui envoie r_i unités de flot).
+*   <strong>Arcs B_j -&gt; T</strong> : Capacité = b_j (De même pour B_j).
+*   <strong>Arcs R_i -&gt; B_j</strong> : Capacité = 1 (Entre chaque paire, il peut y avoir au maximum 1 arête car c'est un graphe simple). On met un arc de chaque R_i vers chaque B_j.</p>
+<p><strong>Condition d'existence :</strong>
+Il existe un graphe biparti respectant les degrés SI ET SEULEMENT SI le flot maximum dans ce réseau sature tous les arcs sortant de la source (et donc tous ceux entrant dans le puits).
+C'est-à-dire : <strong>Flot Max = Somme des r_i</strong>.</p>
+<p><strong>2. Contre-exemple</strong>
+Prenons n=1, m=1.
+*   r = (2)
+*   b = (2)
+*   Somme r = 2, Somme b = 2. L'équation est vérifiée.
+*   Cependant, on a un seul sommet à gauche et un seul à droite.
+*   Dans un graphe simple, on ne peut mettre qu'une seule arête entre eux.
+*   Les degrés seront donc au maximum 1. Impossible d'avoir degré 2.</p>
+<p><strong>3. Extension : Une seule séquence d (Graphe non orienté)</strong>
+Peut-on savoir si une séquence d = (d1, ..., dn) correspond à un graphe non orienté simple ?
+Oui, on peut aussi modéliser cela avec des flots, mais c'est plus subtil.
+*   On crée une source S et un puits T.
+*   On crée des nœuds représentant toutes les <strong>paires possibles</strong> {i, j} (les arêtes potentielles).
+*   On crée des nœuds pour chaque sommet i.
+*   <strong>Arcs S -&gt; Paire_{i,j}</strong> : Capacité = 1 (Chaque arête existe ou non).
+*   <strong>Arcs Paire_{i,j} -&gt; Sommet i</strong> et <strong>Paire_{i,j} -&gt; Sommet j</strong> : Capacité = 1 (Si l'arête est choisie, elle contribue au degré de i et de j).
+*   <strong>Arcs Sommet i -&gt; T</strong> : Capacité = d_i (Le degré voulu).</p>
+<p>Le problème a une solution si le flot max sature tous les arcs vers T (Flot Max = Somme des d_i).
+<em>(Note : En pratique, pour ce problème spécifique, l'algorithme de Havel-Hakimi est plus simple et plus utilisé que les flots).</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.5df7522c.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.21aa498e.min.js"></script>
+      
+    
+  </body>
+</html>

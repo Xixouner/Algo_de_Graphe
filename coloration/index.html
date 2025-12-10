@@ -1,0 +1,707 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation des algorithmes de Kruskal et Prim">
+      
+      
+      
+      
+        <link rel="prev" href="../k_connexite/">
+      
+      
+        <link rel="next" href="../flots/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.11">
+    
+    
+      
+        <title>Exercices Corrigés - Coloration - Algo de Graphe - Kruskal & Prim</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.bd6182e7.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercices-corriges-coloration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-header__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Algo de Graphe - Kruskal & Prim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exercices Corrigés - Coloration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Algo de Graphe - Kruskal &amp; Prim" class="md-nav__button md-logo" aria-label="Algo de Graphe - Kruskal & Prim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Algo de Graphe - Kruskal & Prim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kruskal_prim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kruskal & Prim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercices_corriges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercices Corrigés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plus_courts_chemins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plus Courts Chemins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k_connexite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-Connexité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coloration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-relation-entre-chi-et-omega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Relation entre Chi et Omega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-algorithme-glouton-sur-knn-moins-un-couplage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Algorithme Glouton sur Kn,n moins un couplage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-sommet-darticulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Sommet d'articulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-graphes-k-degeneres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Graphes k-dégénérés
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-theoreme-de-vizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Théorème de Vizing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-relation-entre-chi-et-omega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 1 : Relation entre Chi et Omega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-algorithme-glouton-sur-knn-moins-un-couplage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 2 : Algorithme Glouton sur Kn,n moins un couplage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-sommet-darticulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 3 : Sommet d'articulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-graphes-k-degeneres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 4 : Graphes k-dégénérés
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-theoreme-de-vizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercice 5 : Théorème de Vizing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="exercices-corriges-coloration">Exercices Corrigés - Coloration<a class="headerlink" href="#exercices-corriges-coloration" title="Permanent link">&para;</a></h1>
+<p>Voici les corrections pour la série d'exercices sur la coloration de graphes.</p>
+<h2 id="exercice-1-relation-entre-chi-et-omega">Exercice 1 : Relation entre Chi et Omega<a class="headerlink" href="#exercice-1-relation-entre-chi-et-omega" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Laquelle de ces affirmations est vraie ?
+*   Chi &lt;= Omega
+*   Omega &lt;= Chi</p>
+<p><strong>Réponse : Omega &lt;= Chi est VRAIE.</strong></p>
+<ul>
+<li><strong>Omega (w)</strong> est la taille de la plus grande clique (un groupe de sommets tous reliés entre eux).</li>
+<li><strong>Chi (x)</strong> est le nombre chromatique (nombre minimum de couleurs pour colorier le graphe).</li>
+</ul>
+<p><strong>Explication :</strong>
+Dans une clique de taille k, chaque sommet est relié à tous les autres. Il est donc impossible de donner la même couleur à deux sommets de la clique. Il faut donc obligatoirement <strong>au moins k couleurs</strong> différentes juste pour colorier cette clique.
+Par conséquent, le nombre total de couleurs nécessaires pour le graphe entier (Chi) est forcément supérieur ou égal à la taille de la plus grande clique (Omega).</p>
+<hr />
+<h2 id="exercice-2-algorithme-glouton-sur-knn-moins-un-couplage">Exercice 2 : Algorithme Glouton sur Kn,n moins un couplage<a class="headerlink" href="#exercice-2-algorithme-glouton-sur-knn-moins-un-couplage" title="Permanent link">&para;</a></h2>
+<p><strong>Graphe :</strong> G est un graphe biparti complet Kn,n (deux ensembles A et B de n sommets) auquel on a retiré un couplage parfait (on a enlevé les arêtes (a1, b1), (a2, b2)... (an, bn)).
+Cela signifie que a_i est relié à tous les b_j sauf b_i.</p>
+<p><strong>1. Permutation pour 2 couleurs (Minimum)</strong>
+Puisque le graphe est biparti (les arêtes ne vont que de A vers B), il est 2-coloriable.
+*   <strong>Ordre :</strong> D'abord tous les sommets de A, puis tous les sommets de B.
+    *   a1, a2, ..., an, b1, b2, ..., bn
+*   <strong>Exécution :</strong>
+    *   Tous les a_i prennent la couleur 1 (ils ne sont pas reliés entre eux).
+    *   Tous les b_i prennent la couleur 2 (ils sont reliés aux a_i, donc pas couleur 1, mais pas reliés entre eux).
+*   <strong>Total :</strong> 2 couleurs.</p>
+<p><strong>2. Permutation pour un nombre maximum de couleurs</strong>
+On veut piéger l'algorithme glouton.
+*   <strong>Ordre :</strong> a1, b1, a2, b2, ..., an, bn.
+*   <strong>Exécution :</strong>
+    *   <strong>a1</strong> : Couleur 1.
+    *   <strong>b1</strong> : N'est PAS relié à a1 (arête retirée). Prend la couleur 1.
+    *   <strong>a2</strong> : Relié à b1 (couleur 1). Prend la couleur 2.
+    *   <strong>b2</strong> : Relié à a1 (couleur 1). N'est PAS relié à a2. Prend la couleur 2.
+    *   <strong>a3</strong> : Relié à b1 (1) et b2 (2). Prend la couleur 3.
+    *   <strong>b3</strong> : Relié à a1 (1) et a2 (2). Prend la couleur 3.
+    *   ...
+    *   <strong>an, bn</strong> : Reliés à tous les b_j et a_j précédents (couleurs 1 à n-1). Prennent la couleur n.
+*   <strong>Total :</strong> n couleurs seront utilisées.</p>
+<hr />
+<h2 id="exercice-3-sommet-darticulation">Exercice 3 : Sommet d'articulation<a class="headerlink" href="#exercice-3-sommet-darticulation" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Soit v un sommet d'articulation séparant le graphe en deux blocs G1 et G2. Montrez que Chi(G) = max(Chi(G1), Chi(G2)).</p>
+<p><strong>Preuve :</strong>
+1.  <strong>Borne inférieure :</strong> G contient G1 et G2 comme sous-graphes. Donc il faut au moins autant de couleurs que pour G1 et autant que pour G2. Donc Chi(G) &gt;= max(Chi(G1), Chi(G2)).
+2.  <strong>Borne supérieure (Construction) :</strong>
+    *   Coloriez G1 avec k1 = Chi(G1) couleurs. Le sommet v reçoit une couleur c1.
+    *   Coloriez G2 avec k2 = Chi(G2) couleurs. Le sommet v reçoit une couleur c2.
+    *   Supposons k1 &gt;= k2. On a k1 couleurs disponibles.
+    *   Dans le coloriage de G2, on peut permuter les couleurs (échanger les noms des couleurs) pour faire en sorte que v reçoive la couleur c1 (la même que dans G1).
+    *   Maintenant, les deux coloriages sont compatibles au niveau du sommet v (le seul point commun).
+    *   On fusionne les deux coloriages. Le nombre total de couleurs utilisé est max(k1, k2).</p>
+<hr />
+<h2 id="exercice-4-graphes-k-degeneres">Exercice 4 : Graphes k-dégénérés<a class="headerlink" href="#exercice-4-graphes-k-degeneres" title="Permanent link">&para;</a></h2>
+<p><strong>Définition :</strong> Un graphe est k-dégénéré si on peut le réduire à vide en supprimant successivement des sommets de degré &lt;= k.</p>
+<p><strong>1. Équivalence</strong>
+Un graphe est k-dégénéré SI ET SEULEMENT SI tout sous-graphe contient au moins un sommet de degré &lt;= k.
+*   Si on peut supprimer successivement, à chaque étape le sommet supprimé avait degré &lt;= k dans le graphe restant (qui est un sous-graphe).
+*   Inversement, si tout sous-graphe a un sommet de degré faible, on peut toujours en trouver un à supprimer pour continuer la réduction.</p>
+<p><strong>2. Graphes 1-dégénérés</strong>
+Ce sont les graphes qui contiennent toujours un sommet de degré 0 ou 1.
+Si on supprime ces sommets récursivement, on finit par tout supprimer.
+Cela correspond aux <strong>Forêts</strong> (graphes sans cycles).
+*   Un cycle a tous ses sommets de degré 2. Donc un graphe avec un cycle n'est pas 1-dégénéré (le cycle restera bloqué).</p>
+<p><strong>3. k-dégénéré =&gt; (k+1)-coloriable</strong>
+Utilisons l'algorithme glouton avec un ordre intelligent.
+*   <strong>Ordre :</strong> L'inverse de l'ordre de suppression. On commence par le dernier sommet supprimé, on remonte jusqu'au premier.
+*   Soit v un sommet dans cet ordre. Quand c'est son tour d'être colorié, il a un certain nombre de voisins déjà coloriés.
+*   Ces voisins sont ceux qui étaient <em>après</em> lui dans l'ordre de suppression (donc présents dans le graphe au moment où v a été supprimé).
+*   Par définition de la k-dégénérescence, v avait au plus k voisins dans ce graphe résiduel.
+*   Donc v a au plus k voisins déjà coloriés.
+*   Parmi k+1 couleurs disponibles, il en reste forcément au moins une libre pour v.
+*   Donc le graphe est (k+1)-coloriable.</p>
+<hr />
+<h2 id="exercice-5-theoreme-de-vizing">Exercice 5 : Théorème de Vizing<a class="headerlink" href="#exercice-5-theoreme-de-vizing" title="Permanent link">&para;</a></h2>
+<p><strong>Question :</strong> Montrez le théorème de Vizing : Chi' &lt;= Delta + 1.</p>
+<p><strong>Définitions :</strong>
+*   <strong>Chi' (x')</strong> : Indice chromatique (nombre de couleurs pour colorier les ARÊTES).
+*   <strong>Delta</strong> : Degré maximum du graphe.</p>
+<p><strong>Énoncé :</strong>
+Le nombre de couleurs nécessaires pour colorier les arêtes d'un graphe est soit égal au degré maximum (Delta), soit égal à Delta + 1.
+*   On a évidemment Chi' &gt;= Delta (car un sommet de degré Delta a Delta arêtes incidentes qui doivent toutes avoir des couleurs différentes).
+*   Vizing a prouvé que l'on n'a jamais besoin de plus de Delta + 1 couleurs.</p>
+<p><strong>Note :</strong> La preuve complète est complexe et dépasse généralement le cadre d'un simple exercice, mais le résultat est fondamental à connaître.
+Pour les graphes bipartis, on a toujours Chi' = Delta.
+Pour les graphes généraux, c'est soit Delta (Classe 1), soit Delta + 1 (Classe 2).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"search":"../assets/javascripts/workers/search.5df7522c.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.21aa498e.min.js"></script>
+      
+    
+  </body>
+</html>
