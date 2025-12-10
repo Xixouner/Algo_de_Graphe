@@ -2,6 +2,7 @@ site_name: Algo de Graphe - Kruskal & Prim
 site_url: https://Xixouner.github.io/Algo_de_Graphe/
 site_description: Documentation des algorithmes de Kruskal et Prim
 nav:
+  - Accueil: index.md
   - Kruskal & Prim: kruskal_prim.md
   - Exercices Corrigés: exercices_corriges.md
   - Plus Courts Chemins: plus_courts_chemins.md
