@@ -1,0 +1,11 @@
+site_name: Algo de Graphe - Kruskal & Prim
+site_description: Documentation des algorithmes de Kruskal et Prim
+nav:
+  - Kruskal & Prim: kruskal_prim.md
+  - Exercices Corrigés: exercices_corriges.md
+  - Plus Courts Chemins: plus_courts_chemins.md
+  - k-Connexité: k_connexite.md
+  - Coloration: coloration.md
+  - Flots: flots.md
+theme:
+  name: material
